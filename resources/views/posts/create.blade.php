@@ -69,14 +69,17 @@
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" name="post[title]" id="title" placeholder="Enter title">
+                <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
             </div>
             <div class="form-group">
                 <label for="body">Body</label>
                 <textarea name="post[body]" id="body" placeholder="Enter body"></textarea>
+                <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
             </div>
             <div class="form-group">
                 <label for="product_name">Product Name</label>
                 <input type="text" name="post[product_name]" id="product_name" placeholder="Enter product name">
+                <p class="product_name__error" style="color:red">{{ $errors->first('post.product_name') }}</p>
             </div>
             <div class="form-group">
                 <label for="fat">Fat</label>
