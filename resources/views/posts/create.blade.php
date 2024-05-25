@@ -62,6 +62,11 @@
     </style>
 </head>
     <body>
+    <x-app-layout>
+    <x-slot name="header">
+        　create
+    </x-slot>
+    
     <div class="container">
         <h1>Blog Name</h1>
         <form action="/posts" method="POST" class="form">
@@ -104,5 +109,6 @@
     <div class="footer">
     <a href="/">戻る</a>
     </div>
+    </x-app-layout>
 </body>
 </html>

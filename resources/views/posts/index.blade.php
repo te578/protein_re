@@ -14,8 +14,10 @@
             font-family: 'Nunito', sans-serif;
         }
         .scroll-container {
-            height: 100%;
-            overflow-y: scroll; /* 全画面スクロールを有効に */
+            
+            height: 590px;
+            
+            overflow-y: auto; /* 全画面スクロールを有効に */
         }
         .posts {
             width: 80%;
@@ -47,7 +49,7 @@
         }
         /* ナビゲーションメニューのスタイル */
         nav {
-            width: 20%; /* 左側に固定 */
+            width: 10%; /* 左側に固定 */
             height: 100vh%;
             background-color: #f4f4f4;
             float: left;
@@ -71,6 +73,10 @@
     </style>
 </head>
 <body>
+    <x-app-layout>
+    <x-slot name="header">
+        　     
+    </x-slot>
     <div class="scroll-container">
         <!-- ナビゲーションメニュー -->
         <nav>
@@ -102,5 +108,8 @@
             @endforeach
         </div>
     </div>
+   
+    </x-app-layout>
 </body>
 </html>
+

@@ -53,6 +53,10 @@
     </style>
 </head>
 <body>
+    <x-app-layout>
+    <x-slot name="header">
+        　show
+    </x-slot>
     <div class="container">
         <h1>{{ $post->title }}</h1>
         <div class="post-details">
@@ -69,5 +73,6 @@
             <a href="/">戻る</a>
         </div>
     </div>
+    </x-app-layout>
 </body>
 </html>
