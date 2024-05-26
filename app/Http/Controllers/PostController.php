@@ -32,4 +32,16 @@ class PostController extends Controller
     
     return redirect('/posts/' . $post->id);
     }
+    public function mypage()
+    {
+        $user = Auth::user(); // ログインしているユーザーを取得
+        $posts = Post::where('user_id', $user->id)->get(); // ユーザーの投稿を取得
+
+        return view('posts.mypage',compact('user', 'posts'));
+    }
+    public function delete(Post $post)
+    {
+    $post->delete();
+    return redirect('/');
+    }
 }

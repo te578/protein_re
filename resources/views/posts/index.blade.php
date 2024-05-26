@@ -47,6 +47,21 @@
             height: auto;
             margin-top: 10px;
         }
+        
+         .like-button {
+        background-color: #e9e9e9; /* ボタンのデフォルトの背景色 */
+        color: #333; /* ボタンのテキスト色 */
+        border: 1px solid #ccc; /* ボタンのボーダー */
+        padding: 5px 10px; /* ボタンの余白 */
+        cursor: pointer; /* カーソルをポインターに変更 */
+        transition: background-color 0.3s; /* 背景色の変化をアニメーション化 */
+        }
+
+        .like-button.liked {
+        background-color: #007bff; /* いいねされた場合の背景色 */
+        color: #fff; /* テキスト色を白に変更 */
+        }
+        
         /* ナビゲーションメニューのスタイル */
         nav {
             width: 10%; /* 左側に固定 */
@@ -71,6 +86,7 @@
             background-color: #ddd;
         }
     </style>
+   
 </head>
 <body>
     <x-app-layout>
@@ -82,7 +98,7 @@
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="/mypage">マイページ</a></li>
                 <li><a href='/posts/create'>新規作成</a></li>
                 <!-- 追加のページへのリンクをここに追加 -->
             </ul>
@@ -104,11 +120,11 @@
                     @if($post->image_url)
                         <img class='image' src="{{ $post->image_url }}" alt="{{ $post->title }}">
                     @endif
-                </div>
+                   <button class="like-button" onclick="toggleLike(this)" data-post-id="{{ $post->id }}">Like</button>
+                   </div>
             @endforeach
+                </div>
         </div>
-    </div>
-   
     </x-app-layout>
 </body>
 </html>
