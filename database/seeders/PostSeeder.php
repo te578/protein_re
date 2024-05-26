@@ -25,7 +25,9 @@ class PostSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         DB::table('posts')->insert([
-                 ['title' => 'Healthy Salad',
+                 [
+                'user_id' => 1,
+                'title' => 'Healthy Salad',
                 'product_name' => 'Salad',
                 'body' => 'A delicious and healthy green salad.',
                 'fat' => 5.25,
@@ -36,6 +38,7 @@ class PostSeeder extends Seeder
                 'updated_at' => now(),
                 ],
                 [
+                'user_id' => 1,
                 'title' => 'Fruit Smoothie',
                 'product_name' => 'Smoothie',
                 'body' => 'A refreshing fruit smoothie for a healthy snack.',
@@ -47,6 +50,7 @@ class PostSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'user_id' => 1,
                 'title' => 'Grilled Chicken',
                 'product_name' => 'Chicken',
                 'body' => 'Juicy grilled chicken seasoned to perfection.',
