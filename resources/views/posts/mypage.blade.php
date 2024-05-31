@@ -84,6 +84,7 @@
                                 @method('DELETE')
                             <button type="button" onclick="deletePost({{ $post->id }})" style="color: red;">削除</button> 
                             </form>
+                            <div class="edit"><a href="/posts/{{ $post->id }}/edit">編集</a></div>
                             <script>
                                     function deletePost(id) {
                                                 'use strict'

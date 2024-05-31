@@ -69,7 +69,7 @@
     
     <div class="container">
         <h1>Blog Name</h1>
-        <form action="/posts" method="POST" class="form">
+        <form action="/posts" method="POST" class="form" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="title">Title</label>
@@ -100,7 +100,7 @@
             </div>
             <div class="form-group">
                 <label for="image_url">Image URL</label>
-                <input type="text" name="post[image_url]" id="image_url" placeholder="Enter image URL">
+                <input type="file" name="post[image_url]" id="image_url" placeholder="Enter image URL">
             </div>
            
             <input type="submit" value="Store">

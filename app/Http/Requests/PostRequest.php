@@ -18,7 +18,8 @@ class PostRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules()//入力時のルールを追加しこれが当てはまったときに
+    //コントローラーが動く
     {
         return [
             'post.title' => 'required|string|max:100',

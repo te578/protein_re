@@ -18,14 +18,17 @@
             height: 590px;
             
             overflow-y: auto; /* 全画面スクロールを有効に */
+            
         }
         .posts {
             width: 80%;
             margin: auto;
+            
         }
         .post {
             padding: 20px;
             border-bottom: 1px solid #ccc;
+            box-sizing: border-box; /* パディングとボーダーを含めたサイズ計算 */
         }
         .post:last-child {
             border-bottom: none;
@@ -69,6 +72,7 @@
             background-color: #f4f4f4;
             float: left;
             
+            
         }
         nav ul {
             list-style-type: none;
@@ -97,9 +101,14 @@
         <!-- ナビゲーションメニュー -->
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="#">お知らせ</a></li>
                 <li><a href="/mypage">マイページ</a></li>
                 <li><a href='/posts/create'>新規作成</a></li>
+                <li><a herf='/ranking'>いいねランキング</a></li>
+                <li><a herf='/ranking'>ユーザー検索</a></li>
+                
+                
+                
                 <!-- 追加のページへのリンクをここに追加 -->
             </ul>
         </nav>
@@ -111,21 +120,31 @@
             @foreach($posts as $post)
                 <div class='post'>
                     <h2 class='title'>{{ $post->title }}</h2>
-                    <p class='body'>{{ $post->boby }}</p>
+                    <p class='body'>{{ $post->body }}</p>
                     <p class='product_name'><strong>Product Name:</strong> {{ $post->product_name }}</p>
                     <p class='fat'><strong>Fat:</strong> {{ $post->fat }}g</p>
                     <p class='protein'><strong>Protein:</strong> {{ $post->protein }}g</p>
                     <p class='carbohydrates'><strong>Carbohydrates:</strong> {{ $post->carbohydrates }}g</p>
-                    <p class='likes_count'><strong>Likes:</strong> {{ $post->likes_count }}</p>
+                   
                     @if($post->image_url)
                         <img class='image' src="{{ $post->image_url }}" alt="{{ $post->title }}">
                     @endif
-                   <button class="like-button" onclick="toggleLike(this)" data-post-id="{{ $post->id }}">Like</button>
-                   </div>
-            @endforeach
+               <div>
+                @if($post->is_liked_by_auth_user())
+                <a href="{{ route('unlike', ['id' => $post->id]) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $post->likes->count() }}</span></a>
+                @else
+                <a href="{{ route('like', ['id' => $post->id]) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post->likes->count() }}</span></a>
+                @endif
                 </div>
+            </div>
+            @endforeach
+                <div class='paginate'>
+                        {{ $posts->links() }}
+                </div>
+        </div>
         </div>
     </x-app-layout>
 </body>
+
 </html>
 

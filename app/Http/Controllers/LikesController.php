@@ -8,33 +8,37 @@ use App\Models\Post;
 
 class LikesController extends Controller
 {
-    public function toggleLike(Request $request)
+   public function like(Request $request, $postId)
     {
-        $user_id = auth()->id(); // ログインユーザーのIDを取得
-        $post_id = $request->post_id;
+        $user = $request->user();
+        $post = Post::findOrFail($postId);
 
-        $existing_like = Like::where('user_id', $user_id)->where('post_id', $post_id)->first();
-
-        if ($existing_like) {
-            // いいねが既に存在する場合は削除（いいねを解除）
-            $existing_like->delete();
-            $status = 'unliked';
-        } else {
-            // いいねが存在しない場合は追加（いいねを登録）
-            Like::create([
-                'user_id' => $user_id,
-                'post_id' => $post_id,
-            ]);
-            $status = 'liked';
+        if (!$post->isLikedBy($user)) {
+            $post->likes()->create(['user_id' => $user->id]);
         }
 
-        // ポストのいいね数を取得してレスポンスに含める
-        $likes_count = Post::where('id', $post_id)->value('likes_count');
-
-        return response()->json([
-            'status' => $status,
-            'likes_count' => $likes_count,
-        ]);
+        return back();
     }
+
+    public function unlike(Request $request, $postId)
+    {
+        $user = $request->user();
+        $post = Post::findOrFail($postId);
+
+        $like = $post->likes()->where('user_id', $user->id)->first();
+        if ($like) {
+            $like->delete();
+        }
+
+        return back();
+    }
+    
+  
+
 }
+
+
+
+
+
 
