@@ -30,13 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage',[PostController::class,'mypage'])->name('posts.mypage')->middleware('auth');
     Route::delete('/posts/{post}', [PostController::class,'delete']);
     Route::get('/posts/{post}/edit',[PostController::class,'edit']);
-    Route::post('/posts/{post}/like',[LikesController::class,'like']);
-    Route::delete('/posts/{post}/unlike',[LikesController::class,'unlike']);
+   
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
      Route::get('/like/{id}', [LikesController::class,'like'])->name('like');
     Route::get('/unlike/{id}',[LikesController::class,'unlike'])->name('unlike');
+    Route::get('/ranking',[LikesController::class,'getranking'])->name('ranking');
     
 });
 

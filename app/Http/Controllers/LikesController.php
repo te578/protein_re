@@ -33,7 +33,13 @@ class LikesController extends Controller
         return back();
     }
     
-  
+    public function getranking()
+    {
+        $ranking = Post::withCount('likes')->orderBy('likes_count', 'desc')->take(10)->get();
+         
+        
+        return view('posts.ranking',['posts' => $ranking]);
+    }
 
 }
 

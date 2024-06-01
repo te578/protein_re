@@ -36,11 +36,14 @@ class PostController extends Controller
     $user_id = Auth::id();//現在認証しているユーザーからIDを取る
     $post->user_id = $user_id;//user_idを受け取る処理ここで$postにuser_idを渡している
     //
-     $image_url = Cloudinary::upload($request->file('post.image_url')->getRealPath())->getSecurePath();
+    
       
      $input = $request['post'];//name=post[]のなかの値フォームから送信されたデータのうち
+    if($request->file('post.image_url')){
+     $image_url = Cloudinary::upload($request->file('post.image_url')->getRealPath())->getSecurePath();
+    $input += ['image_url' => $image_url];
      $input['image_url'] = $image_url;
-
+    }
     
     $post->fill($input)->save();//name="post[]" の中に含まれる全ての値を $input 変数に格納しています。
         return redirect('/posts/' . $post->id);//「指定されたURLに移動してください」

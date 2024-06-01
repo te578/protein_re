@@ -104,8 +104,8 @@
                 <li><a href="#">お知らせ</a></li>
                 <li><a href="/mypage">マイページ</a></li>
                 <li><a href='/posts/create'>新規作成</a></li>
-                <li><a herf='/ranking'>いいねランキング</a></li>
-                <li><a herf='/ranking'>ユーザー検索</a></li>
+                <li><a href='/ranking'>いいねランキング</a></li>
+                <li><a href='/ranking'>ユーザー検索</a></li>
                 
                 
                 
@@ -127,7 +127,7 @@
                     <p class='carbohydrates'><strong>Carbohydrates:</strong> {{ $post->carbohydrates }}g</p>
                    
                     @if($post->image_url)
-                        <img class='image' src="{{ $post->image_url }}" alt="{{ $post->title }}">
+                        <img class='image' src="{{ $post->image_url }}" >
                     @endif
                <div>
                 @if($post->is_liked_by_auth_user())
