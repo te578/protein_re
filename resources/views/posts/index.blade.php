@@ -64,6 +64,7 @@
         background-color: #007bff; /* いいねされた場合の背景色 */
         color: #fff; /* テキスト色を白に変更 */
         }
+       
         
         /* ナビゲーションメニューのスタイル */
         nav {
@@ -135,6 +136,13 @@
                 @else
                 <a href="{{ route('like', ['id' => $post->id]) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post->likes->count() }}</span></a>
                 @endif
+                </div>
+                <div class="profile-info">
+                <strong>投稿ユーザー:</strong>
+                <a href="{{ route('userpage',$post->user_id) }}">{{ $post->user->name }}</a><!--リレーションを行うとposts-->
+                <!--からユーザーの名前を引き出せる-->
+                
+                    <!-- 他のプロフィール情報を表示する場合はここに追加 -->
                 </div>
             </div>
             @endforeach

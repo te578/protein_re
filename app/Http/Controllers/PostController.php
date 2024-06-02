@@ -7,6 +7,7 @@ use Cloudinary;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use APp\Models\User;
 
 class PostController extends Controller
 {
@@ -52,21 +53,46 @@ class PostController extends Controller
     public function mypage(Post $posts)
     {
         $user = Auth::user(); // ログインしているユーザーを取得
-        $posts = Post::where('user_id', $user->id)->get(); // ユーザーの投稿を取得
-
+        $posts = $posts->where('user_id', $user->id)->get(); // ユーザーの投稿を取得
+       
         return view('posts.mypage',compact('user', 'posts'));//['user' => $user, 'posts' => $posts]でもいい
     }
     
     public function delete(Post $post)
     {
-    $post->delete();
+        $post->delete();
         return redirect('/');
     }
     
     public function edit(Post $post)
     {
-        return view('posts.edit')->with(['post' =>$post]);
+        return view('posts.edit')->with(['post' => $post]);
     }
+
+
+    public function userpage(User $user)
+    {    
+        $posts = $user->posts()->get();//$userの中に指定したIDが入っている、posts()はリレーションから指定のpostsテーブルを取ってきている
+        return view('posts.userpage')->with(['user' => $user, 'posts' => $posts]);
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 

@@ -41,9 +41,13 @@ class Post extends Model
       return false;
     }
   }
+   public function user(){
+     return $this->belongsTo(User::class);
+   }
+   
    public function isLikedBy(User $user)
-    {
-        return $this->likes()->where('user_id', $user->id)->exists();
-    }
+{
+    return $this->likes()->where('user_id', $user->id)->exists();
+}
 }
 
