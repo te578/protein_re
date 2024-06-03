@@ -40,7 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/follow/{user}', [FollowController::class, 'follow'])->name('follow');
     Route::delete('/unfollow/{user}', [FollowController::class, 'unfollow'])->name('unfollow');
     Route::get('/userpage/{user}', [PostController::class, 'userpage'])->name('userpage');
-    
+    Route::get('/search', [PostController::class, 'search'])->name('search');
+    Route::get('/search/find', [PostController::class, 'searching'])->name('searching');
 });
 
 require __DIR__.'/auth.php';

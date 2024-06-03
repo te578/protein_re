@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\DB;
 use Cloudinary;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
+use Illuminate\Http\Request;
 use App\Models\Post;
-use APp\Models\User;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -76,6 +77,29 @@ class PostController extends Controller
         return view('posts.userpage')->with(['user' => $user, 'posts' => $posts]);
     }
     
+    
+    
+    
+    public function search()
+    {
+        return view('posts.search');
+    }
+    
+    public function searching(Request $request,Post $posts)
+    {
+         $keyword = $request->input('keyword');
+
+        $query = Post::query();
+
+        if(!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%")
+                ->orWhere('body', 'LIKE', "%{$keyword}%");
+        }
+ 
+        $posts = $query->get();
+
+        return view('posts.search', compact('posts','keyword'));
+    }
 
 
 
