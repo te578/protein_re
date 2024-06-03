@@ -72,7 +72,7 @@ class PostController extends Controller
 
     public function userpage(User $user)
     {    
-        $posts = $user->posts()->get();//$userの中に指定したIDが入っている、posts()はリレーションから指定のpostsテーブルを取ってきている
+        $posts = $user->posts()->get();//$userの中に指定したIDが入っている、posts()はリレーションから指定のpostsテーブルを取ってきている()
         return view('posts.userpage')->with(['user' => $user, 'posts' => $posts]);
     }
     

@@ -143,8 +143,8 @@
                 <!--からユーザーの名前を引き出せる-->
                 
                     <!-- 他のプロフィール情報を表示する場合はここに追加 -->
+                    </div>
                 </div>
-            </div>
             @endforeach
                 <div class='paginate'>
                         {{ $posts->links() }}
