@@ -68,6 +68,10 @@
             @if($post->image_url)
                 <img src="{{ $post->image_url }}" alt="{{ $post->title }}">
             @endif
+            <div class="profile-info">
+                <strong>投稿ユーザー:</strong>
+                <a href="{{ route('userpage',$post->user_id) }}">{{ $post->user->name }}</a><!--リレーションを行うとposts-->
+            </div>
         </div>
         <div class="footer">
             <a href="/">戻る</a>

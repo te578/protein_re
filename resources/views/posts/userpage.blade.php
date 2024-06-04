@@ -62,8 +62,21 @@
                     <p>ユーザー名: {{ $user->name }}</p>
                     <p>メールアドレス: {{ $user->email }}</p>
                     <!-- その他のユーザー情報を表示する場合はここに追加 -->
-                    
                 </div>
+                <div>
+                    @if (Auth::user()->followings()->where('followed_id', $user->id)->exists())
+                            <form action="{{ route('unfollow', $user->id) }}" method="POST"><!--ユーザーBのIDがルートに入る-->
+                                @csrf
+                            <button type="submit">Unfollow</button>
+                        </form>
+                    @else
+                        <form action="{{ route('follow', $user->id) }}" method="POST">
+                                @csrf
+                            <button type="submit">Follow</button>
+                        </form>
+                    @endif
+                </div>
+
 
                 @if ($posts->count() > 0)
                     <h2>過去の投稿一覧</h2>

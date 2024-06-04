@@ -77,13 +77,12 @@ class PostController extends Controller
         return view('posts.userpage')->with(['user' => $user, 'posts' => $posts]);
     }
     
-    
-    
-    
     public function search()
     {
         return view('posts.search');
     }
+    
+    
     
     public function searching(Request $request,Post $posts)
     {
