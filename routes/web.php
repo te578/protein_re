@@ -4,6 +4,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LikesController;
+use App\Http\Controllers\FollowController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,8 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/unlike/{id}',[LikesController::class,'unlike'])->name('unlike');
     Route::get('/ranking',[LikesController::class,'getranking'])->name('ranking');
     
-    Route::post('/follow/{user}', [FollowController::class, 'follow'])->name('follow');
-    Route::delete('/unfollow/{user}', [FollowController::class, 'unfollow'])->name('unfollow');
+    Route::post('/follow/{user}', [FollowController::class,'follow'])->name('follow');
+    Route::post('/unfollow/{user}', [FollowController::class, 'unfollow'])->name('unfollow');
     Route::get('/userpage/{user}', [PostController::class, 'userpage'])->name('userpage');
     Route::get('/search', [PostController::class, 'search'])->name('search');
     Route::get('/search/find', [PostController::class, 'searching'])->name('searching');

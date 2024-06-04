@@ -64,7 +64,9 @@
         background-color: #007bff; /* いいねされた場合の背景色 */
         color: #fff; /* テキスト色を白に変更 */
         }
-       
+       　.fast_title{
+        justify-content: center;
+       }
         
         /* ナビゲーションメニューのスタイル */
         nav {
@@ -116,7 +118,7 @@
         
         <!-- コンテンツ -->
         <div class='posts'>
-            <h1>PFC BALANCE</h1>
+            <h1 class= "fast_title">PFC BALANCE</h1>
             <!-- 投稿をループして表示 -->
             @foreach($posts as $post)
                 <div class='post'>

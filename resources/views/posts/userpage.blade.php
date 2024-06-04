@@ -48,6 +48,35 @@
             text-decoration: none;
             color: #007BFF;
         }
+        .animate_button{
+             background-color: #87CEEB; 
+              color: #ffffff; 
+              padding: 8px 16px; 
+              border: none;
+              border-radius: 25px; 
+              cursor: pointer;
+              font-size: 14px; 
+              font-family: 'Arial', sans-serif;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+              transition: all 0.3s ease;
+              position: relative;
+              overflow: hidden;
+        }
+        .animate_button2{
+                 background-color:  #B0C4DE; 
+          color: #ffffff; 
+          padding: 8px 16px; 
+          border: none;
+          border-radius: 25px; 
+          cursor: pointer;
+          font-size: 14px; 
+          font-family: 'Arial', sans-serif;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        
     </style>
 </head>
 <body>
@@ -64,17 +93,20 @@
                     <!-- その他のユーザー情報を表示する場合はここに追加 -->
                 </div>
                 <div>
-                    @if (Auth::user()->followings()->where('followed_id', $user->id)->exists())
+            @if (Auth::user()->id !== $user->id)
+                         @if (Auth::user()->following()->where('followed_user_id', $user->id)->exists())    
                             <form action="{{ route('unfollow', $user->id) }}" method="POST"><!--ユーザーBのIDがルートに入る-->
                                 @csrf
-                            <button type="submit">Unfollow</button>
+                            <button type="submit" class="animate_button2">フォローを外す</button>
                         </form>
                     @else
                         <form action="{{ route('follow', $user->id) }}" method="POST">
                                 @csrf
-                            <button type="submit">Follow</button>
+                            <button type="submit" class= "animate_button">フォローする</button>
                         </form>
                     @endif
+                    
+            @endif
                 </div>
 
 
