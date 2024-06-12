@@ -68,38 +68,38 @@
     </x-slot>
     
     <div class="container">
-        <h1>Blog Name</h1>
+        <h1>投稿内容</h1>
         <form action="/posts" method="POST" class="form" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title">タイトル</label>
                 <input type="text" name="post[title]" id="title" placeholder="Enter title">
                 <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
             </div>
             <div class="form-group">
-                <label for="body">Body</label>
+                <label for="body">説明</label>
                 <textarea name="post[body]" id="body" placeholder="Enter body"></textarea>
                 <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
             </div>
             <div class="form-group">
-                <label for="product_name">Product Name</label>
+                <label for="product_name">製品名</label>
                 <input type="text" name="post[product_name]" id="product_name" placeholder="Enter product name">
                 <p class="product_name__error" style="color:red">{{ $errors->first('post.product_name') }}</p>
             </div>
             <div class="form-group">
-                <label for="fat">Fat</label>
+                <label for="fat">脂質</label>
                 <input type="number" name="post[fat]" id="fat" step="0.01" placeholder="Enter fat">
             </div>
             <div class="form-group">
-                <label for="protein">Protein</label>
+                <label for="protein">タンパク質</label>
                 <input type="number" name="post[protein]" id="protein" step="0.01" placeholder="Enter protein">
             </div>
             <div class="form-group">
-                <label for="carbohydrates">Carbohydrates</label>
+                <label for="carbohydrates">炭水化物</label>
                 <input type="number" name="post[carbohydrates]" id="carbohydrates" step="0.01" placeholder="Enter carbohydrates">
             </div>
             <div class="form-group">
-                <label for="image_url">Image URL</label>
+                <label for="image_url">画像</label>
                 <input type="file" name="post[image_url]" id="image_url" placeholder="Enter image URL">
             </div>
            

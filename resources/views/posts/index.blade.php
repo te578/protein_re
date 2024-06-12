@@ -5,6 +5,8 @@
     <title>Blog</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
         html, body {
             height: 100%;
@@ -21,7 +23,7 @@
             
         }
         .posts {
-            width: 80%;
+            width: 600px;
             margin: auto;
             
         }
@@ -29,6 +31,7 @@
             padding: 20px;
             border-bottom: 1px solid #ccc;
             box-sizing: border-box; /* パディングとボーダーを含めたサイズ計算 */
+            margin-bottom: 16px;
         }
         .post:last-child {
             border-bottom: none;
@@ -47,7 +50,7 @@
         }
         .image {
             max-width: 100%;
-            height: auto;
+            max-height: 100%;
             margin-top: 10px;
         }
         
@@ -67,7 +70,11 @@
        　.fast_title{
         justify-content: center;
        }
-        
+        .chart{
+            height:200px;
+            width:100px;
+            position: relative;
+        }
         /* ナビゲーションメニューのスタイル */
         nav {
             width: 10%; /* 左側に固定 */
@@ -120,41 +127,83 @@
         <div class='posts'>
             <h1 class= "fast_title">PFC BALANCE</h1>
             <!-- 投稿をループして表示 -->
+            
             @foreach($posts as $post)
                 <div class='post'>
                     <h2 class='title'>{{ $post->title }}</h2>
                     <p class='body'>{{ $post->body }}</p>
-                    <p class='product_name'><strong>Product Name:</strong> {{ $post->product_name }}</p>
-                    <p class='fat'><strong>Fat:</strong> {{ $post->fat }}g</p>
-                    <p class='protein'><strong>Protein:</strong> {{ $post->protein }}g</p>
-                    <p class='carbohydrates'><strong>Carbohydrates:</strong> {{ $post->carbohydrates }}g</p>
-                   
+                    <p class='product_name'><strong>製品名:</strong> {{ $post->product_name }}</p>
+                    <!--<p class='fat'><strong>脂質:</strong> {{ $post->fat }}g</p>-->
+                    <!--<p class='protein'><strong>タンパク質:</strong> {{ $post->protein }}g</p>-->
+                    <!--<p class='carbohydrates'><strong>炭水化物:</strong> {{ $post->carbohydrates }}g</p>-->
+                   <div class='flex w-3/4'>
+                   <canvas class='chart'id="barChart-{{ $post->id }}" width="400" height="200"></canvas>
                     @if($post->image_url)
                         <img class='image' src="{{ $post->image_url }}" >
                     @endif
-               <div>
-                @if($post->is_liked_by_auth_user())
-                <a href="{{ route('unlike', ['id' => $post->id]) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $post->likes->count() }}</span></a>
-                @else
-                <a href="{{ route('like', ['id' => $post->id]) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post->likes->count() }}</span></a>
-                @endif
-                </div>
-                <div class="profile-info">
-                <strong>投稿ユーザー:</strong>
-                <a href="{{ route('userpage',$post->user_id) }}">{{ $post->user->name }}</a><!--リレーションを行うとposts-->
-                <!--からユーザーの名前を引き出せる-->
-                
-                    <!-- 他のプロフィール情報を表示する場合はここに追加 -->
                     </div>
+                   <div>
+                    @if($post->is_liked_by_auth_user())
+                    <a href="{{ route('unlike', ['id' => $post->id]) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $post->likes->count() }}</span></a>
+                    @else
+                    <a href="{{ route('like', ['id' => $post->id]) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post->likes->count() }}</span></a>
+                    @endif
+                    </div>
+                    <div class="profile-info">
+                            <strong>投稿ユーザー:</strong>
+                            <a href="{{ route('userpage',$post->user_id) }}">{{ $post->user->name }}</a><!--リレーションを行うとposts-->
+                     
+                     </div>
+                    
+                    <!--<div style="width: 75%; margin: auto;">-->
+                    <!--        <canvas id="postChart"></canvas>-->
+                           
+                    <!--</div>-->
                 </div>
             @endforeach
                 <div class='paginate'>
                         {{ $posts->links() }}
                 </div>
         </div>
+       
+   
+          
         </div>
     </x-app-layout>
 </body>
-
+  <script>
+     document.addEventListener("DOMContentLoaded", function() {
+        @foreach($posts as $post)
+            var ctx = document.getElementById('barChart-{{ $post->id }}');
+            var chart = new Chart(ctx, {
+                // グラフの種類
+                type: 'bar', // ここでは棒グラフを例にしていますが、他の種類も使用できます
+                data: {
+                    // ラベル
+                    labels: ['タンパク質', '脂質', '炭水化物'],
+                    datasets: [{
+                        label: '栄養素(g)',
+                        // グラフに表示するデータ
+                        data: [{{$post->protein}},{{$post->fat}}, {{$post->carbohydrates}}],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                 options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+            });
+        @endforeach
+    });
+</script>
+    
+    
 </html>
 

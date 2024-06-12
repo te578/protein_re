@@ -14,7 +14,29 @@ class PostController extends Controller
 {
     public function index(Post $post)
     {
-   return view('posts.index')->with(['posts' => $post->paginate(10)]);//'posts'はindexの中の$postsを表している
+        
+            //   $postsData = [];
+            // foreach($post as $post){
+            //     $postData = [
+            //         'label' => $post->title,
+            //         'data' => [$post->fat, $post->protein, $post->carbohydrates],
+            //         'backgroundColor' => [
+            //             'rgba(255, 99, 132, 0.2)', // 脂質の色
+            //             'rgba(54, 162, 235, 0.2)', // タンパク質の色
+            //             'rgba(75, 192, 192, 0.2)' // 炭水化物の色
+            //         ],
+            //         'borderColor' => [
+            //             'rgba(255, 99, 132, 1)', // 脂質の境界線色
+            //             'rgba(54, 162, 235, 1)', // タンパク質の境界線色
+            //             'rgba(75, 192, 192, 1)' // 炭水化物の境界線色
+            //         ],
+            //         'borderWidth' => 1
+            //     ];
+            //     array_push($postsData, $postData);
+            // }'postsData' => $postsData
+
+   
+  return view('posts.index')->with(['posts' => $post->paginate(10), ]);//'posts'はindexの中の$postsを表している
    //$post->get()はpostsテーブルからデータを取ってきているここの$postはインスタンスであり
    //(Post $post)を引数にして自動的にとってきている
     }
@@ -55,8 +77,15 @@ class PostController extends Controller
     {
         $user = Auth::user(); // ログインしているユーザーを取得
         $posts = $posts->where('user_id', $user->id)->get(); // ユーザーの投稿を取得
-       
-        return view('posts.mypage',compact('user', 'posts'));//['user' => $user, 'posts' => $posts]でもいい
+        //$follow_count = $user->follows->count();
+        
+        // フォローしている人の数
+        $followingsCount = $user->followingsCount(); 
+        // フォロワーの数
+        $followersCount = $user->followersCount();
+                
+        
+        return view('posts.mypage',compact('user', 'posts','followingsCount', 'followersCount' ));//['user' => $user, 'posts' => $posts]でもいい
     }
     
     public function delete(Post $post)

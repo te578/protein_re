@@ -17,6 +17,7 @@ class FollowController extends Controller
         $currentUser = Auth::user(); // フォローする側のユーザー（ユーザーA）
         if ($currentUser->id !== $user->id && !$currentUser->following()->where('followed_user_id', $user->id)->exists()) {
             $currentUser->following()->attach($user->id); // フォローされる側のユーザー（ユーザーB）のIDを追加
+           
         }
 
         return back();

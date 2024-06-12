@@ -15,7 +15,7 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            border: 2px solid #007bff; /* 外枠の色と太さ */
+            border: 2px solid black; /* 外枠の色と太さ */
             border-radius: 10px; /* 外枠の角を丸くする */
             background-color: #fff; /* コンテンツの背景色 */
         }
@@ -82,8 +82,8 @@
                 <span class="rank">{{ $rank }}位</span>
                 <h2 class="title">{{ $post->title }}</h2>
                 <p class="body">{{ $post->body }}</p>
-                <p class="product-name"><strong>Product Name:</strong> {{ $post->product_name }}</p>
-                <p class="nutrition-info"><strong>Fat:</strong> {{ $post->fat }}g | <strong>Protein:</strong> {{ $post->protein }}g | <strong>Carbohydrates:</strong> {{ $post->carbohydrates }}g</p>
+                <p class="product-name"><strong>製品名:</strong> {{ $post->product_name }}</p>
+                <p class="nutrition-info"><strong>脂質:</strong> {{ $post->fat }}g | <strong>タンパク質:</strong> {{ $post->protein }}g | <strong>炭水化物:</strong> {{ $post->carbohydrates }}g</p>
                 @if($post->image_url)
                     <img class="image" src="{{ $post->image_url }}" alt="{{ $post->title }}">
                 @endif

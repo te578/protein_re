@@ -116,11 +116,11 @@
                         <div class='post'>
                             <h2 class='title'>{{ $post->title }}</h2>
                             <p class='body'>{{ $post->body }}</p>
-                            <p class='product_name'><strong>Product Name:</strong> {{ $post->product_name }}</p>
-                            <p class='fat'><strong>Fat:</strong> {{ $post->fat }}g</p>
-                            <p class='protein'><strong>Protein:</strong> {{ $post->protein }}g</p>
-                            <p class='carbohydrates'><strong>Carbohydrates:</strong> {{ $post->carbohydrates }}g</p>
-                            <p class='likes_count'><strong>Likes:</strong> {{ $post->likes_count }}</p>
+                            <p class='product_name'><strong>製品名:</strong> {{ $post->product_name }}</p>
+                            <p class='fat'><strong>脂質:</strong> {{ $post->fat }}g</p>
+                            <p class='protein'><strong>タンパク質:</strong> {{ $post->protein }}g</p>
+                            <p class='carbohydrates'><strong>炭水化物:</strong> {{ $post->carbohydrates }}g</p>
+                           
                             @if($post->image_url)
                                 <img class='image' src="{{ $post->image_url }}" alt="{{ $post->title }}">
                             @endif

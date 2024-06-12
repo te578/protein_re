@@ -61,4 +61,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+    // フォローしている人の数
+    public function followingsCount(): int 
+    { 
+        return $this->following()->count(); 
+        
+    }
+    // フォロワーの数 
+    public function followersCount(): int 
+    { 
+        return $this->followers()->count(); 
+        
+    }
 }

@@ -48,6 +48,16 @@
             text-decoration: none;
             color: #007BFF;
         }
+        .follow-info {
+             margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+          .follow-info .label {
+            display: block;
+            font-size: 14px;
+            color: #888;
+        }
     </style>
 </head>
 <body>
@@ -62,8 +72,13 @@
                     <h2>ユーザー情報</h2>
                     <p>ユーザー名: {{ $user->name }}</p>
                     <p>メールアドレス: {{ $user->email }}</p>
-                    <!-- その他のユーザー情報を表示する場合はここに追加 -->
+                    <!--<p>フォロワー:$user->follows->user_id->count</p>-->
                 </div>
+                <div class='follow-info'>
+                    <p>フォロー数<span class="label">{{$followingsCount}}</span></p>
+                    <p>フォロワー数<span class="label">{{$followersCount}}</span></p>
+                </div>
+                   
 
                 @if ($posts->count() > 0)
                     <h2>過去の投稿一覧</h2>
@@ -71,11 +86,11 @@
                         <div class='post'>
                             <h2 class='title'>{{ $post->title }}</h2>
                             <p class='body'>{{ $post->body }}</p>
-                            <p class='product_name'><strong>Product Name:</strong> {{ $post->product_name }}</p>
-                            <p class='fat'><strong>Fat:</strong> {{ $post->fat }}g</p>
-                            <p class='protein'><strong>Protein:</strong> {{ $post->protein }}g</p>
-                            <p class='carbohydrates'><strong>Carbohydrates:</strong> {{ $post->carbohydrates }}g</p>
-                            <p class='likes_count'><strong>Likes:</strong> {{ $post->likes_count }}</p>
+                            <p class='product_name'><strong>製品名:</strong> {{ $post->product_name }}</p>
+                            <p class='fat'><strong>脂質:</strong> {{ $post->fat }}g</p>
+                            <p class='protein'><strong>タンパク質:</strong> {{ $post->protein }}g</p>
+                            <p class='carbohydrates'><strong>炭水化物:</strong> {{ $post->carbohydrates }}g</p>
+                            
                             @if($post->image_url)
                                 <img class='image' src="{{ $post->image_url }}" alt="{{ $post->title }}">
                             @endif
