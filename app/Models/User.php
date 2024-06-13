@@ -41,4 +41,36 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+    
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'followed_user_id', 'user_id');
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'followed_user_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+    // フォローしている人の数
+    public function followingsCount(): int 
+    { 
+        return $this->following()->count(); 
+        
+    }
+    // フォロワーの数 
+    public function followersCount(): int 
+    { 
+        return $this->followers()->count(); 
+        
+    }
 }
