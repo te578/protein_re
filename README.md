@@ -10,7 +10,7 @@
 
 <p>ログイン方法</p>
 
-<p>ログイン画面に移動する</p>
+<p>ログイン画面に移動する　　 https://protein9-5312485dc1b8.herokuapp.com/　　</p>
 <p>メールアドレス： shouda6116d@gmail.com  を入力</p>
 <p>パスワード：　gikdloril23jfdk　　を入力</p>
 <p>ランキング機能と編集機能はエラーが起きます</p>
