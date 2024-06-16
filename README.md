@@ -5,9 +5,15 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+
 </p>
 
-## About Laravel
+<p>ログイン方法</p>
+
+<p>ログイン画面に移動する</p>
+<p>メールアドレス： shouda6116d@gmail.com  を入力</p>
+<p>パスワード：　gikdloril23jfdk　　を入力</p>
+<p>ランキング機能と編集機能はエラーが起きます</p>
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
