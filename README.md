@@ -12,7 +12,7 @@
 
 <p>ログイン画面に移動する　　 https://protein9-5312485dc1b8.herokuapp.com/　　</p>
 <p>メールアドレス： shouda6116d@gmail.com  を入力</p>
-<p>パスワード：　gikdloril23jfdk　　を入力</p>
+<p>パスワード：　　　を入力</p>
 <p>ランキング機能と編集機能はエラーが起きます</p>
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
